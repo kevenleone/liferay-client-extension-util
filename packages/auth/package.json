@@ -1,0 +1,21 @@
+{
+    "author": {
+        "email": "keven.santos.sz@gmail.com",
+        "name": "Keven Leone"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "module": "index.ts",
+    "name": "@liferay-client-extension-util/auth",
+    "type": "module",
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "build": "bun build ./src/*.ts --outdir ./dist --target node --root ./src && tsc --emitDeclarationOnly --declaration --outDir ./dist ./src/index.ts > /dev/null 2>&1 || true"
+    }
+}
