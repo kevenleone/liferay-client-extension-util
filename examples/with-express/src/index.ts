@@ -4,7 +4,7 @@ import cors from "cors";
 import { LiferayOAuth2Client } from "@liferay-client-extension-util/auth";
 import { liferayAuthMiddleware } from "@liferay-client-extension-util/express";
 
-const PORT = Bun.env.PORT || 58081;
+const PORT = Bun.env.PORT || 3001;
 
 const app = express();
 
