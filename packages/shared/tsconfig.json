@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "types": ["bun"], // Only Bun types, no node
+        "skipLibCheck": true, // Ignore type conflicts in declaration files
+        "moduleResolution": "node",
+        "module": "ESNext",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noEmit": false
+    },
+    "include": ["src/**/*"]
+}

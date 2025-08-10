@@ -1,0 +1,21 @@
+{
+    "name": "@liferay-client-extension-util/shared",
+    "module": "src/index.ts",
+    "type": "module",
+    "private": true,
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "build": "bun build ./src/*.ts --outdir ./dist --target node --root ./src && tsc --emitDeclarationOnly --declaration --outDir ./dist ./src/index.ts > /dev/null 2>&1 || true"
+    },
+    "dependencies": {
+        "valibot": "^1.1.0"
+    }
+}
