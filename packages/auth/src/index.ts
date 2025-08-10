@@ -1,12 +1,9 @@
-import { env, fetcher } from "@liferay-client-extension-util/shared";
+import { env, fetcher } from '@liferay-client-extension-util/shared';
 
 export default class LiferayOAuth2Client {
-    private static applicationIds = new Map<String, String>();
+    private static applicationIds = new Map<string, string>();
 
-    private static oAuth2Client = new Map<
-        String,
-        { expires_in: number; token: string }
-    >();
+    private static oAuth2Client = new Map<string, { expires_in: number; token: string }>();
 
     public static async getAuthorization(externalReferenceCode: string) {
         const oAuth2Client = this.oAuth2Client.get(externalReferenceCode);
@@ -24,11 +21,11 @@ export default class LiferayOAuth2Client {
             new URLSearchParams({
                 client_id: await this.getClientId(externalReferenceCode),
                 client_secret: this.getClientSecret(externalReferenceCode),
-                grant_type: "client_credentials",
+                grant_type: 'client_credentials',
             }),
             {
                 headers: {
-                    "Content-Type": "",
+                    'Content-Type': '',
                 },
                 shouldStringify: false,
             }
@@ -59,15 +56,10 @@ export default class LiferayOAuth2Client {
     }
 
     private static getClientSecret(externalReferenceCode: string) {
-        const clientSecret =
-            env[
-                `${externalReferenceCode}.oauth2.headless.server.client.secret`
-            ];
+        const clientSecret = env[`${externalReferenceCode}.oauth2.headless.server.client.secret`];
 
         if (!clientSecret) {
-            throw new Error(
-                `Unable to find ${externalReferenceCode} client secret`
-            );
+            throw new Error(`Unable to find ${externalReferenceCode} client secret`);
         }
 
         return clientSecret;

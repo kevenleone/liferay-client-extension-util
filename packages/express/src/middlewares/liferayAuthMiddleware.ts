@@ -1,26 +1,26 @@
-import { verify } from "jsonwebtoken";
-import jwktopem from "jwk-to-pem";
-import type { NextFunction, Request, Response } from "express";
+import { verify } from 'jsonwebtoken';
+import jwktopem from 'jwk-to-pem';
+import type { NextFunction, Request, Response } from 'express';
 
 import {
     type LiferayAuthorization,
     parsedEnv,
     fetcher,
-} from "@liferay-client-extension-util/shared";
-import LiferayOAuth2Client from "@liferay-client-extension-util/auth";
+} from '@liferay-client-extension-util/shared';
+import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
 
 const externalReferenceCodes =
-    parsedEnv?.["liferay.oauth.application.external.reference.codes"];
+    parsedEnv?.['liferay.oauth.application.external.reference.codes'];
 
-const excludes = parsedEnv?.["liferay.oauth.urls.excludes"] || "";
+const excludes = parsedEnv?.['liferay.oauth.urls.excludes'] || '';
 
 async function verifyToken(bearerToken: string) {
-    const jwks = await fetcher("/o/oauth2/jwks");
+    const jwks = await fetcher('/o/oauth2/jwks');
 
     const jwksPublicKey = jwktopem(jwks.keys[0]);
 
     const decoded = verify(bearerToken, jwksPublicKey, {
-        algorithms: ["RS256"],
+        algorithms: ['RS256'],
         ignoreExpiration: true,
     }) as LiferayAuthorization;
 
@@ -30,17 +30,17 @@ async function verifyToken(bearerToken: string) {
 export async function liferayAuthMiddleware(
     request: Request,
     response: Response,
-    next: NextFunction
+    next: NextFunction,
 ) {
     // Allow preflight requests to pass through
-    if (request.method === "OPTIONS" || request.url === "/favicon.ico") {
+    if (request.method === 'OPTIONS' || request.url === '/favicon.ico') {
         return next();
     }
 
-    const { authorization = "" } = request.headers;
+    const { authorization = '' } = request.headers;
 
-    const [, bearerToken] = authorization.split(" ");
-    const excludePaths = excludes.split(",");
+    const [, bearerToken] = authorization.split(' ');
+    const excludePaths = excludes.split(',');
 
     if (excludePaths.includes(request.url)) {
         // No need to validate excluded routes
@@ -54,7 +54,7 @@ export async function liferayAuthMiddleware(
 
     if (!authorization || !bearerToken) {
         return response.status(403).json({
-            message: "Authorization is missing",
+            message: 'Authorization is missing',
         });
     }
 
@@ -62,7 +62,7 @@ export async function liferayAuthMiddleware(
 
     for (const externalReferenceCode of externalReferenceCodes ?? []) {
         const clientId = await LiferayOAuth2Client.getClientId(
-            externalReferenceCode
+            externalReferenceCode,
         );
 
         if (clientId === decodedToken.client_id) {
@@ -74,6 +74,6 @@ export async function liferayAuthMiddleware(
 
     response.status(401).json({
         message:
-            "JWT token client_id value does not match expected client_id value.",
+            'JWT token client_id value does not match expected client_id value.',
     });
 }

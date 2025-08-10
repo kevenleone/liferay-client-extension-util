@@ -1,22 +1,25 @@
-import fastifyPlugin from "fastify-plugin";
-import { verify } from "jsonwebtoken";
-import jwktopem from "jwk-to-pem";
+import fastifyPlugin from 'fastify-plugin';
+import { verify } from 'jsonwebtoken';
+import jwktopem from 'jwk-to-pem';
 
-import LiferayOAuth2Client from "@liferay-client-extension-util/auth";
-import { parsedEnv, fetcher } from "@liferay-client-extension-util/shared";
-import type { LiferayAuthorization } from "@liferay-client-extension-util/shared";
+import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
+import {
+    parsedEnv,
+    fetcher,
+    type LiferayAuthorization,
+} from '@liferay-client-extension-util/shared';
 
 const externalReferenceCodes =
-    parsedEnv?.["liferay.oauth.application.external.reference.codes"];
+    parsedEnv?.['liferay.oauth.application.external.reference.codes'];
 
-const excludes = parsedEnv?.["liferay.oauth.urls.excludes"] || "";
+const excludes = parsedEnv?.['liferay.oauth.urls.excludes'] || '';
 
 async function verifyToken(bearerToken: string) {
-    const jwks = await fetcher("/o/oauth2/jwks");
+    const jwks = await fetcher('/o/oauth2/jwks');
     const jwksPublicKey = jwktopem(jwks.keys[0]);
 
     const decoded = verify(bearerToken, jwksPublicKey, {
-        algorithms: ["RS256"],
+        algorithms: ['RS256'],
         ignoreExpiration: true,
     }) as LiferayAuthorization;
 
@@ -24,12 +27,12 @@ async function verifyToken(bearerToken: string) {
 }
 
 export default fastifyPlugin(async function liferayAuthPlugin(fastify) {
-    const excludePaths = excludes.split(",");
+    const excludePaths = excludes.split(',');
 
-    fastify.decorateRequest("liferayAuthorization");
+    fastify.decorateRequest('liferayAuthorization');
 
-    fastify.addHook("preHandler", async (request, reply) => {
-        if (request.method === "OPTIONS" || request.url === "/favicon.ico") {
+    fastify.addHook('preHandler', async (request, reply) => {
+        if (request.method === 'OPTIONS' || request.url === '/favicon.ico') {
             return;
         }
 
@@ -37,15 +40,15 @@ export default fastifyPlugin(async function liferayAuthPlugin(fastify) {
             return;
         }
 
-        const { authorization = "" } = request.headers as Record<
+        const { authorization = '' } = request.headers as Record<
             string,
             string
         >;
-        const [, bearerToken] = authorization.split(" ");
+        const [, bearerToken] = authorization.split(' ');
 
         if (!authorization || !bearerToken) {
             return reply.code(403).send({
-                message: "Authorization is missing",
+                message: 'Authorization is missing',
             });
         }
 
@@ -53,7 +56,7 @@ export default fastifyPlugin(async function liferayAuthPlugin(fastify) {
 
         for (const externalReferenceCode of externalReferenceCodes ?? []) {
             const clientId = await LiferayOAuth2Client.getClientId(
-                externalReferenceCode
+                externalReferenceCode,
             );
 
             if (clientId === decodedToken.client_id) {
@@ -64,7 +67,7 @@ export default fastifyPlugin(async function liferayAuthPlugin(fastify) {
 
         reply.code(401).send({
             message:
-                "JWT token client_id value does not match expected client_id value.",
+                'JWT token client_id value does not match expected client_id value.',
         });
     });
 });

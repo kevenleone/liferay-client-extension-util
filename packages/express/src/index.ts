@@ -1,1 +1,1 @@
-export * from "./middlewares/liferayAuthMiddleware";
+export * from './middlewares/liferayAuthMiddleware';

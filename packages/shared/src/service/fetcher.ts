@@ -1,7 +1,7 @@
-import { parsedEnv } from "../config/get-env";
+import { parsedEnv } from '../config/get-env';
 
-const dxpDomain = parsedEnv?.["com.liferay.lxc.dxp.domains"];
-const dxpProtocol = parsedEnv?.["com.liferay.lxc.dxp.server.protocol"];
+const dxpDomain = parsedEnv?.['com.liferay.lxc.dxp.domains'];
+const dxpProtocol = parsedEnv?.['com.liferay.lxc.dxp.server.protocol'];
 
 class FetcherError extends Error {
     public info: any;
@@ -14,19 +14,19 @@ class FetcherError extends Error {
 
 const fetcher = async <T = any>(
     resource: RequestInfo,
-    options?: RequestInit
+    options?: RequestInit,
 ): Promise<T> => {
     const response = await fetch(`${dxpProtocol}://${dxpDomain}/${resource}`, {
         ...options,
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...options?.headers,
         },
     });
 
     if (!response.ok) {
         const error = new FetcherError(
-            "An error occurred while fetching the data."
+            'An error occurred while fetching the data.',
         );
 
         error.info = await response.json();
@@ -36,9 +36,9 @@ const fetcher = async <T = any>(
     }
 
     if (
-        options?.method === "DELETE" ||
+        options?.method === 'DELETE' ||
         response.status === 204 ||
-        response.headers.get("Content-Length") === "0"
+        response.headers.get('Content-Length') === '0'
     ) {
         return {} as T;
     }
@@ -48,41 +48,41 @@ const fetcher = async <T = any>(
 
 fetcher.delete = (resource: RequestInfo) =>
     fetcher(resource, {
-        method: "DELETE",
+        method: 'DELETE',
     });
 
 fetcher.patch = <T = any>(
     resource: RequestInfo,
     data: unknown,
-    options?: RequestInit
+    options?: RequestInit,
 ) =>
     fetcher<T>(resource, {
         ...options,
         body: JSON.stringify(data),
-        method: "PATCH",
+        method: 'PATCH',
     });
 
 fetcher.post = <T = any>(
     resource: RequestInfo,
     data?: unknown,
-    options?: RequestInit & { shouldStringify?: boolean }
+    options?: RequestInit & { shouldStringify?: boolean },
 ) =>
     fetcher<T>(resource, {
         ...options,
         body:
-            options?.shouldStringify ?? true
+            (options?.shouldStringify ?? true)
                 ? data
                     ? JSON.stringify(data)
                     : null
                 : (data as BodyInit),
-        method: "POST",
+        method: 'POST',
     }) as Promise<T>;
 
 fetcher.put = (resource: RequestInfo, data: unknown, options?: RequestInit) =>
     fetcher(resource, {
         ...options,
         body: JSON.stringify(data),
-        method: "PUT",
+        method: 'PUT',
     });
 
 export { fetcher };
