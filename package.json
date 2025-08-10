@@ -4,8 +4,8 @@
         "name": "Keven Leone"
     },
     "devDependencies": {
-        "@release-it-plugins/workspaces": "^5.0.3",
-        "release-it": "^19.0.4"
+        "oxlint": "^1.11.1",
+        "prettier": "^3.6.2"
     },
     "name": "@liferay-client-extension-util",
     "repository": {
@@ -15,7 +15,7 @@
     "scripts": {
         "dev": "bun run --filter app dev",
         "build": "bun run --filter './packages/*' build",
-        "release": "release-it --only-version"
+        "lint": "oxlint './packages/**/*.{ts,tsx}' . --fix"
     },
     "private": true,
     "release-it": {
