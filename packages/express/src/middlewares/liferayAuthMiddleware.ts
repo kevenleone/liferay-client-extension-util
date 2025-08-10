@@ -2,10 +2,12 @@ import { verify } from "jsonwebtoken";
 import jwktopem from "jwk-to-pem";
 import type { NextFunction, Request, Response } from "express";
 
-import { parsedEnv, fetcher } from "@liferay-client-extension-util/shared";
+import {
+    type LiferayAuthorization,
+    parsedEnv,
+    fetcher,
+} from "@liferay-client-extension-util/shared";
 import LiferayOAuth2Client from "@liferay-client-extension-util/auth";
-
-import type { LiferayAuthorization } from "../types";
 
 const externalReferenceCodes =
     parsedEnv?.["liferay.oauth.application.external.reference.codes"];
@@ -20,9 +22,7 @@ async function verifyToken(bearerToken: string) {
     const decoded = verify(bearerToken, jwksPublicKey, {
         algorithms: ["RS256"],
         ignoreExpiration: true,
-    }) as {
-        client_id: string;
-    };
+    }) as LiferayAuthorization;
 
     return decoded;
 }
@@ -37,29 +37,28 @@ export async function liferayAuthMiddleware(
         return next();
     }
 
+    const { authorization = "" } = request.headers;
+
+    const [, bearerToken] = authorization.split(" ");
     const excludePaths = excludes.split(",");
 
     if (excludePaths.includes(request.url)) {
         // No need to validate excluded routes
 
+        if (bearerToken) {
+            request.liferayAuthorization = await verifyToken(bearerToken);
+        }
+
         return next();
     }
 
-    const { authorization = "" } = request.headers;
-
-    const [, bearerToken] = authorization.split(" ");
-
     if (!authorization || !bearerToken) {
-        response.status(403).json({
+        return response.status(403).json({
             message: "Authorization is missing",
         });
-
-        return;
     }
 
-    const decodedToken = (await verifyToken(
-        bearerToken
-    )) as LiferayAuthorization;
+    const decodedToken = await verifyToken(bearerToken);
 
     for (const externalReferenceCode of externalReferenceCodes ?? []) {
         const clientId = await LiferayOAuth2Client.getClientId(

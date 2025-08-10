@@ -24,7 +24,8 @@
         }
     },
     "workspaces": [
-        "packages/*"
+        "packages/*",
+        "examples/*"
     ],
     "version": "1.0.0"
 }
