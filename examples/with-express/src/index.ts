@@ -12,18 +12,7 @@ app.use(liferayAuthMiddleware);
 
 app.use(cors());
 
-app.get("/", (request, response) => {
-    response.send({ message: "Hello World" });
-});
-
-app.get("/protected", (request, response) => {
-    response.send({
-        liferayAuthorization: request.liferayAuthorization,
-        message: "Accessing a protected route",
-    });
-});
-
-app.get("/ready", async (request, response) => {
+app.get("/", async (request, response) => {
     const fetchResponse = await fetch(`http://localhost:${PORT}/protected`, {
         headers: {
             Authorization: await LiferayOAuth2Client.getAuthorization(
@@ -36,6 +25,17 @@ app.get("/ready", async (request, response) => {
         message: "Ready",
         protectedCallResponse: await fetchResponse.json(),
     });
+});
+
+app.get("/protected", (request, response) => {
+    response.send({
+        liferayAuthorization: request.liferayAuthorization,
+        message: "Accessing a protected route",
+    });
+});
+
+app.get("/ready", (request, response) => {
+    response.send({ message: "Hello World" });
 });
 
 app.listen(PORT, () => {

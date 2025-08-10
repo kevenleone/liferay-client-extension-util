@@ -1,19 +1,23 @@
 {
-    "name": "with-express",
-    "module": "index.ts",
-    "type": "module",
-    "private": true,
+    "author": {
+        "email": "keven.santos.sz@gmail.com",
+        "name": "Keven Leone"
+    },
+    "dependencies": {
+        "@liferay-client-extension-util/express": "workspace:*",
+        "express": "^5.1.0"
+    },
     "devDependencies": {
         "@types/bun": "latest"
     },
+    "module": "index.ts",
+    "name": "with-express",
     "peerDependencies": {
         "typescript": "^5"
     },
-    "dependencies": {
-        "express": "^5.1.0",
-        "@liferay-client-extension-util/express": "workspace:*"
-    },
+    "private": true,
     "scripts": {
         "dev": "bun --watch src/index.ts"
-    }
+    },
+    "type": "module"
 }
