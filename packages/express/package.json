@@ -1,0 +1,27 @@
+{
+    "name": "@liferay-client-extension-util/express",
+    "module": "index.ts",
+    "type": "module",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "json-web-token": "^3.2.0"
+    },
+    "devDependencies": {
+        "@liferay-client-extension-util/auth": "workspace:*",
+        "@liferay-client-extension-util/shared": "workspace:*",
+        "@types/bun": "latest",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.3",
+        "@types/jwk-to-pem": "^2.0.3"
+    },
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "build": "bun build ./src/*.ts --outdir ./dist --target node --root ./src && tsc --emitDeclarationOnly --declaration --outDir ./dist ./src/index.ts > /dev/null 2>&1 || true"
+    }
+}
