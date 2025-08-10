@@ -3,6 +3,10 @@
         "email": "keven.santos.sz@gmail.com",
         "name": "Keven Leone"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kevenleone/liferay-client-extension-util.git"
+    },
     "name": "@liferay-client-extension-util",
     "scripts": {
         "dev": "bun run --filter app dev",
