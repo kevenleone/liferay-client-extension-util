@@ -1,0 +1,23 @@
+{
+    "author": {
+        "email": "keven.santos.sz@gmail.com",
+        "name": "Keven Leone"
+    },
+    "dependencies": {
+        "@liferay-client-extension-util/fastify": "workspace:*",
+        "fastify": "^5.4.0"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "module": "index.ts",
+    "name": "with-fastify",
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "private": true,
+    "scripts": {
+        "dev": "bun --watch src/index.ts"
+    },
+    "type": "module"
+}
