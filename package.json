@@ -1,0 +1,19 @@
+{
+    "author": {
+        "email": "keven.santos.sz@gmail.com",
+        "name": "Keven Leone"
+    },
+    "name": "@liferay-client-extension-util",
+    "scripts": {
+        "dev": "bun run --filter app dev",
+        "build": "bun run --filter './packages/*' build",
+        "release": "release-it"
+    },
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "release-it": "^19.0.4"
+    }
+}
