@@ -1,0 +1,18 @@
+assemble:
+    - include:
+          - "src/**"
+          - package.json
+liferay-express-sample-oauth-application-user-agent:
+    .serviceAddress: localhost:3001
+    .serviceScheme: http
+    name: Liferay Express Sample OAuth Application User Agent
+    scopes:
+        - Liferay.Headless.Admin.User.everything
+    type: oAuthApplicationUserAgent
+liferay-express-sample-oauth-application-headless-server:
+    .serviceAddress: localhost:3001
+    .serviceScheme: http
+    name: Liferay Express Sample OAuth Application Headless Server
+    scopes:
+        - Liferay.Headless.Admin.User.everything
+    type: oAuthApplicationHeadlessServer
