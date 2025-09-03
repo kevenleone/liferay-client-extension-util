@@ -1,5 +1,5 @@
 {
-    "name": "@liferay-client-extension-util/express",
+    "name": "@client-extension-util-liferay/express",
     "module": "index.ts",
     "type": "module",
     "dependencies": {
@@ -8,8 +8,8 @@
         "json-web-token": "^3.2.0"
     },
     "devDependencies": {
-        "@liferay-client-extension-util/auth": "workspace:*",
-        "@liferay-client-extension-util/shared": "workspace:*",
+        "@client-extension-util-liferay/auth": "workspace:*",
+        "@client-extension-util-liferay/shared": "workspace:*",
         "@types/bun": "latest",
         "@types/cors": "^2.8.19",
         "@types/express": "^5.0.3",

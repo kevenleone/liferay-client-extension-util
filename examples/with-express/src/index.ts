@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 
-import { LiferayOAuth2Client } from '@liferay-client-extension-util/auth';
-import { liferayAuthMiddleware } from '@liferay-client-extension-util/express';
+import { LiferayOAuth2Client } from '@client-extension-util-liferay/auth';
+import { liferayAuthMiddleware } from '@client-extension-util-liferay/express';
 
 const PORT = Bun.env.PORT || 3001;
 

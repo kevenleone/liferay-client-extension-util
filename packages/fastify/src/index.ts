@@ -2,12 +2,12 @@ import fastifyPlugin from 'fastify-plugin';
 import { verify } from 'jsonwebtoken';
 import jwktopem from 'jwk-to-pem';
 
-import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
+import LiferayOAuth2Client from '@client-extension-util-liferay/auth';
 import {
     parsedEnv,
     fetcher,
     type LiferayAuthorization,
-} from '@liferay-client-extension-util/shared';
+} from '@client-extension-util-liferay/shared';
 
 const externalReferenceCodes =
     parsedEnv?.['liferay.oauth.application.external.reference.codes'];

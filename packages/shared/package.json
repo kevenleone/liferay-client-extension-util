@@ -1,5 +1,5 @@
 {
-    "name": "@liferay-client-extension-util/shared",
+    "name": "@client-extension-util-liferay/shared",
     "module": "src/index.ts",
     "type": "module",
     "private": true,

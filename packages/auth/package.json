@@ -10,7 +10,7 @@
         ".": "./dist/index.js"
     },
     "module": "index.ts",
-    "name": "@liferay-client-extension-util/auth",
+    "name": "@client-extension-util-liferay/auth",
     "type": "module",
     "peerDependencies": {
         "typescript": "^5.0.0"

@@ -4,7 +4,7 @@
         "name": "Keven Leone"
     },
     "dependencies": {
-        "@liferay-client-extension-util/express": "workspace:*",
+        "@client-extension-util-liferay/express": "workspace:*",
         "express": "^5.1.0"
     },
     "devDependencies": {

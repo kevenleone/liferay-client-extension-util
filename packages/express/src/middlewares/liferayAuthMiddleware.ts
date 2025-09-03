@@ -6,8 +6,8 @@ import {
     type LiferayAuthorization,
     parsedEnv,
     fetcher,
-} from '@liferay-client-extension-util/shared';
-import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
+} from '@client-extension-util-liferay/shared';
+import LiferayOAuth2Client from '@client-extension-util-liferay/auth';
 
 const externalReferenceCodes =
     parsedEnv?.['liferay.oauth.application.external.reference.codes'];

@@ -1,12 +1,12 @@
 {
-    "name": "@liferay-client-extension-util/fastify",
+    "name": "@client-extension-util-liferay/fastify",
     "module": "index.ts",
     "type": "module",
     "devDependencies": {
         "@types/bun": "latest",
         "@types/jwk-to-pem": "^2.0.3",
-        "@liferay-client-extension-util/auth": "workspace:*",
-        "@liferay-client-extension-util/shared": "workspace:*"
+        "@client-extension-util-liferay/auth": "workspace:*",
+        "@client-extension-util-liferay/shared": "workspace:*"
     },
     "dependencies": {
         "fastify": "^5.4.0",

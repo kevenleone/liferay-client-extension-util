@@ -8,7 +8,7 @@ This monorepo contains a set of packages designed to simplify the development of
 
 ## Packages
 
-### [@liferay-client-extension-util/auth](./packages/auth/README.md)
+### [@client-extension-util-liferay/auth](./packages/auth/README.md)
 
 A utility package for handling OAuth2 authentication with Liferay DXP.
 
@@ -16,7 +16,7 @@ A utility package for handling OAuth2 authentication with Liferay DXP.
 - Token management with automatic expiration handling
 - Client ID and secret management
 
-### [@liferay-client-extension-util/express](./packages/express/README.md)
+### [@client-extension-util-liferay/express](./packages/express/README.md)
 
 Express middleware for Liferay Client Extension authentication and integration.
 
@@ -24,7 +24,7 @@ Express middleware for Liferay Client Extension authentication and integration.
 - JWT token verification using Liferay's JWKS endpoint
 - Support for excluding specific routes from authentication
 
-### [@liferay-client-extension-util/fastify](./packages/fastify/README.md)
+### [@client-extension-util-liferay/fastify](./packages/fastify/README.md)
 
 Fastify plugin for Liferay Client Extension authentication and integration.
 
@@ -39,13 +39,13 @@ You can install individual packages as needed for your project:
 
 ```bash
 # Install the auth package directly 
-bun add @liferay-client-extension-util/auth
+bun add @client-extension-util-liferay/auth
 
 # Install the Express integration
-bun add @liferay-client-extension-util/express
+bun add @client-extension-util-liferay/express
 
 # Install the Fastify integration
-bun add @liferay-client-extension-util/fastify
+bun add @client-extension-util-liferay/fastify
 ```
 
 ## Development

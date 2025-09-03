@@ -1,4 +1,4 @@
-# @liferay-client-extension-util/fastify
+# @client-extension-util-liferay/fastify
 
 Fastify plugin for Liferay Client Extension authentication and integration.
 
@@ -12,18 +12,18 @@ Fastify plugin for Liferay Client Extension authentication and integration.
 ## Installation
 
 ```bash
-bun add @liferay-client-extension-util/fastify
+bun add @client-extension-util-liferay/fastify
 # or
-npm install @liferay-client-extension-util/fastify
+npm install @client-extension-util-liferay/fastify
 # or
-yarn add @liferay-client-extension-util/fastify
+yarn add @client-extension-util-liferay/fastify
 ```
 
 ## Usage
 
 ```typescript
 import Fastify from 'fastify';
-import liferayAuthPlugin from '@liferay-client-extension-util/fastify';
+import liferayAuthPlugin from '@client-extension-util-liferay/fastify';
 
 const fastify = Fastify();
 

@@ -7,7 +7,7 @@
         "oxlint": "^1.11.1",
         "prettier": "^3.6.2"
     },
-    "name": "@liferay-client-extension-util",
+    "name": "@client-extension-util-liferay",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/kevenleone/liferay-client-extension-util.git"

@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 
-import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
-import liferayFastify from '@liferay-client-extension-util/fastify';
+import LiferayOAuth2Client from '@client-extension-util-liferay/auth';
+import liferayFastify from '@client-extension-util-liferay/fastify';
 
 const PORT = Number(Bun.env.PORT || 3001);
 

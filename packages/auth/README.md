@@ -1,4 +1,4 @@
-# @liferay-client-extension-util/auth
+# @client-extension-util-liferay/auth
 
 A utility package for handling OAuth2 authentication with Liferay DXP and Client Extension.
 
@@ -11,17 +11,17 @@ A utility package for handling OAuth2 authentication with Liferay DXP and Client
 ## Installation
 
 ```bash
-bun add @liferay-client-extension-util/auth
+bun add @client-extension-util-liferay/auth
 # or
-npm install @liferay-client-extension-util/auth
+npm install @client-extension-util-liferay/auth
 # or
-yarn add @liferay-client-extension-util/auth
+yarn add @client-extension-util-liferay/auth
 ```
 
 ## Usage
 
 ```typescript
-import LiferayOAuth2Client from '@liferay-client-extension-util/auth';
+import LiferayOAuth2Client from '@client-extension-util-liferay/auth';
 
 // Get authorization token for a specific application
 const token = await LiferayOAuth2Client.getAuthorization('externalReferenceCode');

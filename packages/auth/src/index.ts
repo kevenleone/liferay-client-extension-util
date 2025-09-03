@@ -1,4 +1,4 @@
-import { env, fetcher } from '@liferay-client-extension-util/shared';
+import { env, fetcher } from '@client-extension-util-liferay/shared';
 
 export default class LiferayOAuth2Client {
     private static applicationIds = new Map<string, string>();

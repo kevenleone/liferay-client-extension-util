@@ -1,4 +1,4 @@
-# @liferay-client-extension-util/express
+# @client-extension-util-liferay/express
 
 Express middleware for Liferay Client Extension authentication and integration.
 
@@ -11,18 +11,18 @@ Express middleware for Liferay Client Extension authentication and integration.
 ## Installation
 
 ```bash
-bun add @liferay-client-extension-util/express
+bun add @client-extension-util-liferay/express
 # or
-npm install @liferay-client-extension-util/express
+npm install @client-extension-util-liferay/express
 # or
-yarn add @liferay-client-extension-util/express
+yarn add @client-extension-util-liferay/express
 ```
 
 ## Usage
 
 ```typescript
 import express from 'express';
-import { liferayAuthMiddleware } from '@liferay-client-extension-util/express';
+import { liferayAuthMiddleware } from '@client-extension-util-liferay/express';
 
 const app = express();
 

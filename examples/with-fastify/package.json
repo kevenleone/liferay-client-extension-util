@@ -4,7 +4,7 @@
         "name": "Keven Leone"
     },
     "dependencies": {
-        "@liferay-client-extension-util/fastify": "workspace:*",
+        "@client-extension-util-liferay/fastify": "workspace:*",
         "fastify": "^5.4.0"
     },
     "devDependencies": {

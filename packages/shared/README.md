@@ -1,4 +1,4 @@
-# @liferay-client-extension-util/shared
+# @client-extension-util-liferay/shared
 
 A shared utilities package for Liferay Client Extension development (internal only).
 

@@ -1,4 +1,4 @@
-import type { LiferayAuthorization } from "@liferay-client-extension-util/shared";
+import type { LiferayAuthorization } from "@client-extension-util-liferay/shared";
 
 declare module "fastify" {
     interface FastifyRequest {
